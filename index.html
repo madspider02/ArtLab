@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="AITE AI 藝術教育互動實驗室：情緒色彩體驗、Chatbot 使用心得與全班色彩分享牆。">
+<title>AITE × 藝術教育｜情緒色彩實驗室與心得牆</title>
+<style>
+:root{--ink:#20313c;--muted:#5c6c78;--line:#dedfd9;--paper:#f8f7f2;--white:#fffefc;--accent:#246f78;--accent-hover:#185b63;--radius:23px;--shadow:0 20px 60px rgba(35,55,60,.07)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(170deg,#f6f6f0 0%,#f3f1eb 45%,#f7f9f5 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.65}
+button,input,textarea,select{font:inherit}
+button,a{touch-action:manipulation}
+a{color:var(--accent)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #2f8aa8;outline-offset:3px}
+.wrap{max-width:1170px;margin:0 auto;padding:0 22px}
+.topbar{height:auto;min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #dfe3db66;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.brand-logo{width:43px;height:43px;border-radius:14px;background:conic-gradient(from 30deg,#d6ad63,#d4898b,#9c9ace,#6fa8a0,#d6ad63);display:grid;place-items:center;color:white;font-size:22px;box-shadow:0 6px 16px #546f7922}
+.brand-name{font-size:14px;letter-spacing:.02em;font-weight:830;line-height:1.3}
+.brand-small{display:block;color:var(--muted);font-size:11px;letter-spacing:.09em;font-weight:700;margin-top:4px}
+.header-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.header-links a{padding:9px 13px;border:1px solid #d5dedc;border-radius:999px;text-decoration:none;font-size:12px;font-weight:750;background:#ffffff9a}
+.header-links a:hover{background:#fff}
+.hero{padding:64px 0 34px;display:grid;grid-template-columns:1fr 270px;gap:30px;align-items:center}
+.eyebrow{color:var(--accent);font-weight:800;letter-spacing:.18em;font-size:12px;text-transform:uppercase}
+h1,h2,h3,p{margin-top:0}
+h1{font-size:clamp(34px,5vw,61px);letter-spacing:-.055em;line-height:1.18;margin:13px 0 19px;font-weight:850}
+h1 em{font-style:normal;color:var(--accent)}
+.intro{font-size:16px;color:var(--muted);max-width:730px;line-height:1.95;margin-bottom:21px}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap}
+.hero-badges span{background:#e6efeb;border:1px solid #dce8e1;border-radius:999px;padding:6px 11px;font-size:12px;color:#3d6966;font-weight:750}
+.orbit-art{position:relative;height:245px;border-radius:28px;background:radial-gradient(circle at 45% 48%,#fcf5dc,#f2ece7 44%,#d5e4e0);overflow:hidden;border:1px solid #e1e7dd}
+.orbit-art:before{content:"";position:absolute;inset:31px;border:1px solid #a6b5b070;border-radius:50%;transform:rotate(18deg) scaleX(.68)}
+.orbit-art:after{content:"";position:absolute;inset:45px;border:1px dashed #99aca970;border-radius:50%;transform:rotate(-20deg) scaleX(1.5)}
+.orb{position:absolute;border-radius:50%;box-shadow:inset 2px 3px 9px #fff9,0 9px 20px #3444}
+.orb.o1{width:87px;height:87px;background:#efba5f;top:38px;left:38px}.orb.o2{width:66px;height:66px;background:#85aeae;top:139px;left:127px}.orb.o3{width:53px;height:53px;background:#bd9ac2;top:65px;right:32px}.orb.o4{width:20px;height:20px;background:#ec8a81;top:173px;right:39px}
+.steps-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.tab{cursor:pointer;display:flex;align-items:center;gap:13px;background:#fffdf9;border:1px solid var(--line);box-shadow:0 5px 16px #424c4c06;border-radius:17px;padding:15px 16px;text-align:left;color:var(--ink);transition:background .18s,transform .18s}
+.tab:hover{transform:translateY(-2px)}.tab[aria-selected="true"]{border-color:#7aa5a3;background:#eaf3ef;box-shadow:inset 0 0 0 1px #7aa5a355}
+.tab-index{font-weight:900;letter-spacing:.05em;color:#51858a;font-size:13px}.tab-title{font-weight:850;font-size:15px}.tab-sub{color:var(--muted);font-size:12px;display:block}
+.content-panel{background:var(--white);border:1px solid #e4e4dd;border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(20px,3.4vw,36px);margin-bottom:40px;scroll-margin-top:25px}
+.view[hidden]{display:none !important}
+.section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:25px}
+.section-label{font-size:12px;font-weight:850;color:#4e8986;letter-spacing:.12em;margin-bottom:8px}
+h2{font-size:clamp(25px,3.2vw,36px);letter-spacing:-.035em;margin:0 0 6px;line-height:1.35}
+h3{font-size:19px;line-height:1.45}
+.lead{color:var(--muted);font-size:14px;max-width:760px;line-height:1.85;margin:0}
+.pill{display:inline-flex;align-items:center;border-radius:999px;background:#eef1eb;padding:7px 12px;font-size:12px;font-weight:750;color:#536868}
+.lab-grid{display:grid;grid-template-columns:minmax(0,1.03fr) minmax(310px,.97fr);gap:20px}
+.scene-shell{background:#fff;border:1px solid #ece9df;border-radius:22px;padding:13px}
+.scene{min-height:390px;border-radius:15px;background:linear-gradient(135deg,#e9d5a6,#b1cad3);position:relative;overflow:hidden;isolation:isolate;transition:background 550ms ease}
+.scene-circle{position:absolute;width:165px;height:165px;left:18%;top:13%;border-radius:50%;background:#ffffff85;box-shadow:0 0 0 27px #ffffff22,0 0 0 74px #fff2;filter:blur(.1px)}
+.scene-hill{position:absolute;width:145%;height:310px;border-radius:50%;background:#ffffff60;left:-26%;bottom:-250px;transform:rotate(-6deg)}
+.scene-hill.second{background:#344e532c;left:11%;bottom:-268px;transform:rotate(10deg)}
+.scene-stroke{position:absolute;inset:0;opacity:.5;background:repeating-linear-gradient(109deg,transparent 0 24px,#fff2 25px,transparent 26px 48px);mix-blend-mode:soft-light}
+.scene-label{position:absolute;bottom:18px;left:18px;border-radius:99px;background:#ffffffe3;padding:9px 13px;color:#324857;font-size:12px;font-weight:800}
+.lab-controls{border:1px solid #e8e7e0;border-radius:22px;padding:20px;background:#fafaf7;display:flex;flex-direction:column}
+.control-title{font-size:20px;font-weight:860;margin-bottom:5px}
+.control-desc{color:var(--muted);font-size:13px;margin-bottom:12px}
+.swatches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:10px 0 15px}
+.swatch{display:flex;flex-direction:column;align-items:center;gap:7px;padding:10px 5px;border:2px solid transparent;border-radius:13px;cursor:pointer;background:#f0f2ee;font-size:13px;font-weight:750;color:var(--ink)}
+.swatch.active{border-color:#427d8a;background:#e5eff1}
+.swatch-dot{width:40px;height:40px;background:var(--swatch);border-radius:50%;border:1px solid #0000000c;box-shadow:inset 0 -5px 10px #00000012}
+.lab-response{border-radius:14px;background:#fff;border:1px solid #e7e8df;padding:17px;min-height:155px;margin-bottom:12px}
+.lab-response strong{display:block;margin-bottom:7px;color:#285c61;font-size:15px}
+.lab-response p{font-size:13px;margin:0 0 9px;line-height:1.8}
+.field-label{font-size:13px;font-weight:830;display:block;margin:13px 0 7px}
+textarea,input[type="text"],input[type="url"]{display:block;width:100%;border:1px solid #cfd6d2;border-radius:12px;padding:12px 13px;background:#fff;color:var(--ink);font-size:14px;resize:vertical;min-height:45px}
+textarea::placeholder,input::placeholder{color:#849098}
+textarea{min-height:94px;line-height:1.7}
+.lab-controls textarea{min-height:68px}
+.btn{appearance:none;cursor:pointer;border:1px solid var(--accent);border-radius:12px;background:var(--accent);color:#fff;font-size:14px;font-weight:850;padding:12px 17px;min-height:45px;text-align:center;transition:background .2s,transform .2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn:hover{background:var(--accent-hover);transform:translateY(-1px)}.btn.secondary{background:#fff;color:var(--accent);border-color:#abc2c0}.btn.secondary:hover{background:#eff6f5}
+.btn.quiet{border-color:#e1e7e0;background:#f4f7f4;color:#3f6966}.btn.quiet:hover{background:#e9f0eb}
+.btn[disabled]{opacity:.65;cursor:not-allowed;transform:none}
+.inline-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:13px}
+.teacher-note{font-size:12px;color:var(--muted);line-height:1.8;background:#f5f5ef;padding:14px 16px;border-radius:13px;margin-top:16px}
+.form-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px 22px}
+.full{grid-column:1/-1}
+.req{color:#a33a51;font-size:11px;margin-left:4px;font-weight:750}
+.form-tip{font-size:12px;color:var(--muted);margin:4px 0 0;line-height:1.7}
+.field-card{padding:15px 17px;background:#f7f8f4;border:1px solid #e6e9e0;border-radius:14px}
+.checkbox-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 12px;margin-top:8px}
+.choice{display:flex;align-items:flex-start;gap:9px;line-height:1.5;font-size:13px;cursor:pointer;color:#2d404b}
+.choice input{width:16px;height:16px;flex:none;margin:2px 0 0;accent-color:var(--accent)}
+.form-swatch{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.radio-color{position:relative;cursor:pointer;display:flex;align-items:center;gap:6px;border-radius:999px;background:#fff;padding:6px 10px 6px 6px;border:1px solid #e0e4e1;color:#43505a;font-size:12px;font-weight:750}
+.radio-color input{position:absolute;opacity:0;width:1px;height:1px}
+.radio-color:has(input:checked){border-color:#4d8787;box-shadow:0 0 0 1px #4d8787;background:#eaf3ef}
+.radio-color:has(input:focus-visible){outline:3px solid #2f8aa8;outline-offset:2px}
+.radio-color i{display:inline-block;width:23px;height:23px;border-radius:50%;background:var(--dot);border:1px solid #0000000b}
+.privacy-options{display:flex;gap:12px;flex-wrap:wrap}
+.privacy-option{padding:12px 14px;border:1px solid #dfe5df;border-radius:11px;background:white;min-width:210px;flex:1}
+.submit-row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.status{font-size:13px;color:#376b68;line-height:1.6}.status.error{color:#ad3e47}.status.warning{color:#9c661c}
+.status-bar{padding:12px 14px;border-radius:12px;background:#eff5f0;border:1px solid #d6e6de;font-size:13px;color:#41625e;line-height:1.7;margin-bottom:20px}
+.status-bar.warning{background:#fff7e8;border-color:#f0ddb6;color:#855a24}
+.wall-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.wall-filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{cursor:pointer;padding:8px 11px;border-radius:999px;border:1px solid #d5e0dc;background:#fff;color:#55706e;font-size:12px;font-weight:800}
+.filter-btn[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.wall-stats{display:flex;gap:8px;flex-wrap:wrap;margin:11px 0 23px}
+.stat-chip{display:flex;gap:7px;align-items:center;font-size:11px;font-weight:800;color:#546468;background:#f0f3ee;padding:7px 9px;border-radius:999px}
+.stat-chip i{width:13px;height:13px;border-radius:50%;background:var(--chip)}
+.wall{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.post{border:1px solid #dfe5e0;border-radius:18px;padding:19px;background:linear-gradient(145deg,var(--wash),#fffdfcf0 69%);position:relative;box-shadow:0 4px 17px #1c2c2808;overflow-wrap:anywhere}
+.post:before{content:"";position:absolute;height:5px;top:0;left:0;right:0;background:var(--tone)}
+.post-head{display:flex;align-items:center;gap:9px;margin-bottom:11px}
+.post-dot{display:block;width:35px;height:35px;border-radius:50%;background:var(--tone);border:3px solid #fff;box-shadow:0 2px 10px #0002;flex:none}
+.post-alias{font-size:15px;font-weight:850;line-height:1.35}
+.post-date{font-size:11px;color:#687881}
+.post-bots{display:block;margin:0 0 13px;font-size:12px;color:#3e7074;font-weight:750}
+.post-kicker{font-size:10px;letter-spacing:.07em;color:#6a797e;font-weight:900;margin:14px 0 4px}
+.post-text{font-size:13px;line-height:1.8;white-space:pre-wrap;margin:0;color:#324750}
+.post-art{margin-top:13px;padding-top:11px;border-top:1px solid #dbe2dd}
+.post-link{display:inline-block;font-size:12px;font-weight:850;overflow-wrap:anywhere}
+.empty{grid-column:1/-1;text-align:center;padding:55px 10px;color:#718182;background:#f7f9f6;border:1px dashed #cad8d0;border-radius:17px}
+.empty-icon{font-size:38px;display:block;margin-bottom:10px}
+.footer{border-top:1px solid #dce2db;padding:24px 0 38px;margin-top:10px;color:#73827c;font-size:12px}
+.footer-content{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.footer strong{color:#536b68}
+@media(max-width:970px){.wall{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:1fr 190px}.orbit-art{height:185px}}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:35px}.orbit-art{display:none}.steps-nav{gap:7px}.tab{padding:12px 9px;gap:5px;flex-direction:column;align-items:flex-start}.tab-index{font-size:11px}.tab-title{font-size:13px}.tab-sub{font-size:10px}.lab-grid,.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.scene{min-height:290px}.swatches{grid-template-columns:repeat(3,1fr)}.content-panel{padding:20px 14px}.checkbox-grid{grid-template-columns:1fr}.wall{grid-template-columns:1fr}.header-links a{font-size:11px;padding:8px 10px}.brand-small{font-size:10px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="wrap topbar">
+  <a class="brand" href="#top" aria-label="回到網站首頁">
+    <span class="brand-logo" aria-hidden="true">✦</span>
+    <span class="brand-name">AITE × 藝術教育<span class="brand-small">INTERACTIVE ART & AI LEARNING</span></span>
+  </a>
+  <nav class="header-links" aria-label="外部連結">
+    <a href="https://aite.ntcu.edu.tw/login" target="_blank" rel="noopener noreferrer">前往 AITE Chatbot ↗</a>
+  </nav>
+</header>
+<main id="top" class="wrap">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">AI 藝術教育系列講座 ｜ 2026.11.19</div>
+      <h1>從一種顏色，<br>開始一場 <em>AI 對話</em>。</h1>
+      <p class="intro">先操作情緒色彩實驗室，再探索感興趣的 AITE Chatbot。分享你的真實感受與未來教育想像；如果有創作成果，也歡迎附上連結。沒有標準答案，也不強制產出作品。</p>
+      <div class="hero-badges"><span>國立臺北藝術大學</span><span>師資培育 × 藝術教育</span><span>30 分鐘自由探索</span></div>
+    </div>
+    <div class="orbit-art" aria-hidden="true"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="orb o4"></div></div>
+  </section>
+  <nav class="steps-nav" role="tablist" aria-label="活動的三個階段">
+    <button id="tab-lab" class="tab" type="button" role="tab" aria-controls="view-lab" aria-selected="true" data-view="lab"><span class="tab-index">01 · DISCOVER</span><span><span class="tab-title">色彩體驗</span><span class="tab-sub">看看顏色帶來的想像</span></span></button>
+    <button id="tab-share" class="tab" type="button" role="tab" aria-controls="view-share" aria-selected="false" data-view="share" tabindex="-1"><span class="tab-index">02 · REFLECT</span><span><span class="tab-title">心得分享</span><span class="tab-sub">聊聊 AI 與教育</span></span></button>
+    <button id="tab-wall" class="tab" type="button" role="tab" aria-controls="view-wall" aria-selected="false" data-view="wall" tabindex="-1"><span class="tab-index">03 · CONNECT</span><span><span class="tab-title">全班色彩牆</span><span class="tab-sub">觀看彼此的觀點</span></span></button>
+  </nav>
+
+  <section id="view-lab" class="content-panel view" role="tabpanel" aria-labelledby="tab-lab">
+    <div class="section-head">
+      <div><div class="section-label">COLOR EXPLORATION</div><h2>情緒色彩實驗室</h2><p class="lead">選一個顏色，看畫面如何改變。想想它讓你想起什麼，以及同一種顏色為何可能帶來不同感受。</p></div>
+      <span class="pill">約 3–5 分鐘</span>
+    </div>
+    <div class="lab-grid">
+      <div class="scene-shell"><div class="scene" id="scene" aria-label="互動色彩場景"><div class="scene-circle"></div><div class="scene-hill"></div><div class="scene-hill second"></div><div class="scene-stroke"></div><span class="scene-label" id="scene-label">色彩場景 01 · 暖黃</span></div></div>
+      <div class="lab-controls">
+        <div class="control-title">今天，你想選什麼顏色？</div>
+        <p class="control-desc">點選色彩，觀察場景並回答問題。</p>
+        <div class="swatches" id="swatches" aria-label="六種色彩選擇"></div>
+        <div class="lab-response" aria-live="polite" aria-atomic="true">
+          <strong id="color-question-heading">暖黃｜與你的記憶有關嗎？</strong>
+          <p id="color-question"></p><p id="color-task"></p>
+        </div>
+        <label class="field-label" for="lab-thought">你的色彩聯想（自由填寫）</label>
+        <textarea id="lab-thought" maxlength="250" rows="2" placeholder="例如：我選擇藍色，因為它讓我想到下雨後的校園……"></textarea>
+        <div class="inline-actions"><button type="button" class="btn" id="lab-next">帶著這個顏色分享心得 →</button></div>
+      </div>
+    </div>
+    <div class="teacher-note"><strong>給未來教師的一個提醒：</strong>色彩與情緒沒有固定的一對一答案。好的藝術教學不是要求學生選出「正確的情緒」，而是讓他們能觀察、表達、比較和說明自己的感受。</div>
+  </section>
+
+  <section id="view-share" class="content-panel view" role="tabpanel" aria-labelledby="tab-share" hidden>
+    <div class="section-head">
+      <div><div class="section-label">YOUR VOICE MATTERS</div><h2>分享你的 AITE 體驗</h2><p class="lead">先到 AITE 自由探索感興趣的 Chatbot，再回來分享。作品可以有，也可以沒有；我們更想知道你怎麼看待 AI 與未來教學。</p></div>
+      <a href="https://aite.ntcu.edu.tw/login" target="_blank" rel="noopener noreferrer" class="btn secondary">開啟 AITE ↗</a>
+    </div>
+    <div id="connection-info" class="status-bar warning" role="status">尚未連接 Google Sheet：可體驗色彩，但心得暫時無法送出。請教師先完成部署。</div>
+    <form id="feedback-form" novalidate>
+      <div class="form-grid">
+        <div class="full">
+          <label class="field-label" for="alias">1. 希望大家怎麼稱呼你？ <span class="req">必填</span></label>
+          <input id="alias" name="alias" type="text" maxlength="35" required autocomplete="nickname" placeholder="暱稱或組別名稱即可，不必填真實姓名、學號">
+        </div>
+        <div class="full field-card">
+          <div class="field-label" id="bot-label">2. 你體驗了哪些 Chatbot？ <span class="req">至少勾選一項</span></div>
+          <div class="checkbox-grid" role="group" aria-labelledby="bot-label" id="bot-options">
+            <label class="choice"><input type="checkbox" name="bot" value="AI 師培助教－藝起備課室">AI 師培助教－藝起備課室</label>
+            <label class="choice"><input type="checkbox" name="bot" value="教師資格考－手寫閱卷室">教師資格考－手寫閱卷室</label>
+            <label class="choice"><input type="checkbox" name="bot" value="教師資格考－練功房">教師資格考－練功房</label>
+            <label class="choice"><input type="checkbox" name="bot" value="融合教育">融合教育</label>
+            <label class="choice"><input type="checkbox" name="bot" value="親師溝通">親師溝通</label>
+            <label class="choice"><input type="checkbox" name="bot" value="其他 Chatbot">其他 Chatbot</label>
+          </div>
+        </div>
+        <div class="full">
+          <label class="field-label" for="feeling">3. 與 Chatbot 互動後，讓你最有感的是什麼？ <span class="req">必填</span></label>
+          <textarea id="feeling" name="feeling" rows="3" maxlength="850" required placeholder="驚喜、實用、困難、不放心的地方……都歡迎真實描述。"></textarea>
+        </div>
+        <div class="full">
+          <label class="field-label" for="idea">4. 你認為生成式 AI 能如何運用在師資培育或藝術教育？ <span class="req">必填</span></label>
+          <textarea id="idea" name="idea" rows="3" maxlength="850" required placeholder="你會想用在什麼教學情境？學生可能獲得什麼不同的學習經驗？"></textarea>
+        </div>
+        <div class="full">
+          <label class="field-label" for="wishes">5. 對未來的教育 Chatbot，你還有什麼期待或建議？ <span class="form-tip">選填</span></label>
+          <textarea id="wishes" name="wishes" rows="2" maxlength="600" placeholder="例如希望具備的功能、需要改善之處、你關心的倫理或教學問題。"></textarea>
+        </div>
+        <div class="full field-card">
+          <div class="field-label" id="color-label">6. 選一種代表你這次 AI 體驗的顏色 <span class="req">必填</span></div>
+          <p class="form-tip">顏色只是表達方式，沒有固定情緒意義。</p>
+          <div id="form-colors" class="form-swatch" role="radiogroup" aria-labelledby="color-label"></div>
+          <label class="field-label" for="color-thought">為什麼選這個顏色？ <span class="form-tip">選填</span></label>
+          <textarea id="color-thought" name="colorThought" rows="2" maxlength="250" placeholder="如果你在色彩實驗室有寫下聯想，也會自動帶到這裡。"></textarea>
+        </div>
+        <div>
+          <label class="field-label" for="work-title">7. 如果有生成作品，作品叫什麼？ <span class="form-tip">選填</span></label>
+          <input id="work-title" type="text" maxlength="100" placeholder="例如：我的節奏探索器">
+        </div>
+        <div>
+          <label class="field-label" for="work-url">作品分享網址 <span class="form-tip">選填</span></label>
+          <input id="work-url" type="url" maxlength="600" inputmode="url" placeholder="https://… GitHub、Canva 或其他公開連結">
+        </div>
+        <div class="full field-card">
+          <div class="field-label">8. 你希望這份心得如何被使用？ <span class="req">必填</span></div>
+          <div class="privacy-options" role="radiogroup" aria-label="公開意願">
+            <label class="choice privacy-option"><input type="radio" name="visibility" value="public"><span><strong>同意在全班色彩牆展示</strong><br><span class="form-tip">公開顯示暱稱與心得，任何持有網站網址的人都可能看見。</span></span></label>
+            <label class="choice privacy-option"><input type="radio" name="visibility" value="private"><span><strong>只提供講師閱讀</strong><br><span class="form-tip">資料仍會送進教師的 Google Sheet，但不出現在公開色彩牆。</span></span></label>
+          </div>
+        </div>
+        <div class="full submit-row">
+          <button class="btn" id="submit-button" type="submit">送出我的體驗與想法 →</button>
+          <span id="submit-status" class="status" role="status" aria-live="polite">不需建立 GitHub 帳號，作品連結非必填。</span>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <section id="view-wall" class="content-panel view" role="tabpanel" aria-labelledby="tab-wall" hidden>
+    <div class="section-head">
+      <div><div class="section-label">COLLECTIVE REFLECTIONS</div><h2>我們的 AI 體驗情緒色彩牆</h2><p class="lead">每張不同顏色的卡片，代表一位師培生的真實感受與教育想像。有作品的同學，也能在卡片中分享連結。</p></div>
+      <button type="button" id="refresh-wall" class="btn secondary">↻ 重新整理心得</button>
+    </div>
+    <div class="wall-top">
+      <span id="wall-count" class="pill">公開心得 0 則</span>
+      <div class="wall-filters" id="wall-filters" role="group" aria-label="依色彩篩選心得"></div>
+    </div>
+    <div id="wall-stats" class="wall-stats" aria-label="各色彩心得數量"></div>
+    <p class="form-tip" id="wall-status" role="status" aria-live="polite">按「重新整理心得」查看最新分享。</p>
+    <div id="wall" class="wall" aria-live="polite"></div>
+    <div class="teacher-note">公開牆僅顯示投稿者選擇「同意在全班色彩牆展示」且未被教師隱藏的心得。若需要撤下任何回覆，請聯絡講師；講師可在 Google Sheet 的「展示狀態」欄改為「隱藏」。</div>
+  </section>
+</main>
+<footer class="footer"><div class="wrap footer-content"><span><strong>國家教育研究院課程及教學研究中心｜黃彥融副研究員</strong><br>2026.11.19 · 國立臺北藝術大學 · AITE 教學與課程融入師培課程</span><span>藝術感受沒有標準答案，AI 生成內容仍需教師專業判斷。</span></div></footer>
+
+<!-- POST 使用不可見的 iframe，避免 Github Pages 跨來源請求受到瀏覽器 CORS 限制。 -->
+<iframe id="submit-frame" name="aite-submit-target" title="表單收件背景框架" style="display:none" aria-hidden="true"></iframe>
+<script>
+'use strict';
+/* ==============================================================
+  教師只需修改下一行：把網址貼到兩個單引號中間。必須是 /exec 結尾。
+  例：https://script.google.com/macros/s/AKfycb...../exec
+  尚未設定時，色彩體驗仍然可以操作；心得不會被送出。
+================================================================ */
+const GAS_WEB_APP_URL = '請把GoogleAppsScript部署後的exec網址貼在這裡';
+
+const COLORS = [
+  { name:'暖黃', hex:'#EFC167', wash:'#fff4d9', bg:'linear-gradient(140deg,#f5dc8f,#f3b997)', head:'暖黃｜與你的記憶有關嗎？', question:'這個黃色讓你想起哪一段經驗？', task:'試著描述一個和這種顏色有關的場景，說說當時的心情。'},
+  { name:'天空藍', hex:'#79B2D9', wash:'#e6f2fa', bg:'linear-gradient(140deg,#81c1e4,#d4e6e4)', head:'天空藍｜每個人的藍都一樣嗎？', question:'為什麼同樣的藍色，有人覺得平靜，也有人覺得孤單？', task:'想想光線、背景或故事情境如何改變我們的感受。'},
+  { name:'森林綠', hex:'#7CB794', wash:'#e8f6ea', bg:'linear-gradient(145deg,#6aaf8a,#c5dca8)', head:'森林綠｜帶你去一個地方', question:'生活中有什麼地方讓你聯想到這樣的綠色？', task:'試著為這個場景命名，說明你為什麼會這樣命名。'},
+  { name:'珊瑚紅', hex:'#E58F86', wash:'#fff0ed', bg:'linear-gradient(145deg,#e58f86,#f3c7a7)', head:'珊瑚紅｜紅色只有一種表情嗎？', question:'紅色一定只能代表熱情嗎？', task:'提出一個不同的詮釋，並說明它在哪種情境下可能成立。'},
+  { name:'薰衣草紫', hex:'#A99ACC', wash:'#f0eafa', bg:'linear-gradient(145deg,#a995d2,#e5cddd)', head:'薰衣草紫｜把顏色聽成聲音', question:'這個紫色讓你聯想到哪一種音樂或聲音？', task:'假如它是一段表演，你會搭配什麼速度或節奏？'},
+  { name:'石墨灰', hex:'#8F9A9E', wash:'#edf0f0', bg:'linear-gradient(145deg,#788a95,#c9c8c0)', head:'石墨灰｜灰也能溫暖嗎？', question:'灰色有機會讓你感受到溫暖嗎？', task:'你會加入哪個顏色，讓這個畫面的氛圍產生改變？'}
+];
+let selectedColor = COLORS[0].name;
+let activeView = 'lab';
+let wallEntries = [];
+let wallFilter = '全部';
+let serverReady = false;
+let requestCounter = 0;
+let submitting = false;
+let lastSubmitId = null;
+
+const el = id => document.getElementById(id);
+const configured = /^https:\/\/script\.google\.com\/macros\/s\/[^/?#]+\/exec\/?(?:\?.*)?$/.test(GAS_WEB_APP_URL);
+
+function selectColor(name){
+  const color = COLORS.find(c => c.name === name) || COLORS[0];
+  selectedColor = color.name;
+  el('scene').style.background = color.bg;
+  el('scene-label').textContent = '色彩場景 · ' + color.name;
+  el('color-question-heading').textContent = color.head;
+  el('color-question').textContent = color.question;
+  el('color-task').textContent = '創作任務：' + color.task;
+  document.querySelectorAll('.swatch').forEach(b => {
+    const yes = b.dataset.color === name;
+    b.classList.toggle('active', yes);
+    b.setAttribute('aria-pressed', yes ? 'true' : 'false');
+  });
+  document.querySelectorAll('input[name="color"]').forEach(r => { r.checked = r.value === name; });
+}
+
+function initColors(){
+  COLORS.forEach(c => {
+    const btn = document.createElement('button');
+    btn.type='button';btn.className='swatch';btn.dataset.color=c.name;
+    btn.setAttribute('aria-label','選擇'+c.name);
+    btn.setAttribute('aria-pressed','false');
+    const dot=document.createElement('i');dot.className='swatch-dot';dot.style.setProperty('--swatch',c.hex);dot.setAttribute('aria-hidden','true');
+    const t=document.createElement('span');t.textContent=c.name;
+    btn.append(dot,t);btn.addEventListener('click',()=>selectColor(c.name));
+    el('swatches').append(btn);
+
+    const label=document.createElement('label');label.className='radio-color';
+    label.style.setProperty('--dot',c.hex);
+    const input=document.createElement('input');input.type='radio';input.name='color';input.value=c.name;
+    input.addEventListener('change',()=>{if(input.checked)selectColor(c.name);});
+    const icon=document.createElement('i');icon.setAttribute('aria-hidden','true');
+    const name=document.createElement('span');name.textContent=c.name;
+    label.append(input,icon,name);el('form-colors').append(label);
+  });
+  selectColor(COLORS[0].name);
+}
+
+function switchView(name, scroll=true){
+  if (!['lab','share','wall'].includes(name)) name='lab';
+  activeView=name;
+  document.querySelectorAll('.tab').forEach(tab => {
+    const current = tab.dataset.view===name;
+    tab.setAttribute('aria-selected',String(current));tab.tabIndex=current?0:-1;
+  });
+  document.querySelectorAll('.view').forEach(view=>{view.hidden=view.id!=='view-'+name;});
+  if (name==='wall' && configured) loadWall();
+  if (scroll) {
+    el('view-'+name).scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});
+  }
+  if (history.replaceState) history.replaceState(null,'','#'+name);
+}
+
+function initNav(){
+  document.querySelectorAll('.tab').forEach(tab=>{
+    tab.addEventListener('click',()=>switchView(tab.dataset.view));
+    tab.addEventListener('keydown',ev=>{
+      if(!['ArrowRight','ArrowLeft','Home','End'].includes(ev.key))return;
+      ev.preventDefault();const all=[...document.querySelectorAll('.tab')];let index=all.indexOf(tab);
+      if(ev.key==='ArrowRight')index=(index+1)%all.length;
+      else if(ev.key==='ArrowLeft')index=(index+all.length-1)%all.length;
+      else if(ev.key==='Home')index=0;else index=all.length-1;
+      all[index].focus();switchView(all[index].dataset.view,false);
+    });
+  });
+  el('lab-next').addEventListener('click',()=>{
+    el('color-thought').value=el('lab-thought').value.trim();
+    switchView('share');
+  });
+  el('refresh-wall').addEventListener('click',()=>loadWall());
+  const fromHash=location.hash.slice(1);
+  if(['lab','share','wall'].includes(fromHash))switchView(fromHash,false);
+}
+
+/* Google Apps Script ContentService JSONP：只有讀取 public list、health、receipt。 */
+function jsonp(action, extra={}){
+  return new Promise((resolve,reject)=>{
+    if(!configured){reject(new Error('尚未設定 Apps Script 網址'));return;}
+    const callback='__aite_cb_'+(++requestCounter);
+    const script=document.createElement('script');
+    const u=new URL(GAS_WEB_APP_URL);
+    u.searchParams.set('action',action);u.searchParams.set('callback',callback);
+    u.searchParams.set('_',Date.now().toString());
+    Object.entries(extra).forEach(([key,val])=>u.searchParams.set(key,String(val)));
+    let done=false;
+    const cleanup=()=>{if(script.parentNode)script.remove();delete window[callback];clearTimeout(timer);};
+    const timer=setTimeout(()=>{if(!done){done=true;cleanup();reject(new Error('讀取超時，請檢查網路或部署權限。'));}},14000);
+    window[callback]=data=>{if(done)return;done=true;cleanup();resolve(data);};
+    script.onerror=()=>{if(done)return;done=true;cleanup();reject(new Error('讀取失敗，請檢查 Apps Script 的公開存取權。'));};
+    script.src=u.toString();document.head.append(script);
+  });
+}
+
+async function checkBackend(){
+  if(!configured){
+    el('connection-info').textContent='此版本尚未連線至 Google Sheet。色彩實驗室可以操作；教師貼入 Apps Script 的 /exec 網址後才能正式收件與展示。';
+    return;
+  }
+  try{
+    const res=await jsonp('health');
+    if(!res.ok)throw new Error(res.error || '收件服務未啟用');
+    serverReady=true;
+    el('connection-info').classList.remove('warning');
+    el('connection-info').textContent='已連接課堂心得收件系統。送出後資料會進入教師 Google Sheet；同意公開的心得也會出現在色彩牆。';
+  }catch(err){
+    serverReady=false;
+    el('connection-info').textContent='Google Sheet 目前無法連線：'+err.message+'。請先告知講師，勿重複送出。';
+  }
+}
+
+function getReceiptId(){
+  if(typeof crypto!=='undefined' && typeof crypto.randomUUID==='function')return crypto.randomUUID();
+  // 舊瀏覽器後備：32 位十六進位字串；不含身份資訊。
+  const bytes=new Uint8Array(16);
+  if(typeof crypto!=='undefined' && crypto.getRandomValues)crypto.getRandomValues(bytes);
+  else for(let i=0;i<16;i++)bytes[i]=Math.floor(Math.random()*256);
+  return [...bytes].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+
+function postByForm(payload){
+  const form=document.createElement('form');form.method='POST';form.action=GAS_WEB_APP_URL;
+  form.target='aite-submit-target';form.style.display='none';form.acceptCharset='UTF-8';
+  Object.entries(payload).forEach(([key,value])=>{
+    const inp=document.createElement('input');inp.type='hidden';inp.name=key;inp.value=String(value);
+    form.append(inp);
+  });
+  document.body.append(form);
+  form.submit();
+  setTimeout(()=>form.remove(),3000);
+}
+function sleep(ms){return new Promise(resolve=>setTimeout(resolve,ms));}
+
+async function confirmReceipt(id){
+  // iframe 內的跨來源回覆無法直接讀取，因此改向只讀 API 檢查隨機收件回執。
+  for(let attempt=0;attempt<7;attempt++){
+    await sleep(attempt===0?1500:1900);
+    try{const r=await jsonp('receipt',{id});if(r.ok && r.found)return true;}catch(_){/* 繼續確認 */}
+  }
+  return false;
+}
+function setSubmitStatus(text,type=''){
+  const target=el('submit-status');target.textContent=text;target.className='status '+type;
+}
+
+async function handleSubmit(event){
+  event.preventDefault();
+  if(submitting)return;
+  if(!configured || !serverReady){setSubmitStatus('尚未連接 Google Sheet，請先通知講師完成設定。','error');return;}
+  const alias=el('alias').value.trim();
+  const bots=[...document.querySelectorAll('input[name="bot"]:checked')].map(x=>x.value);
+  const feeling=el('feeling').value.trim();const idea=el('idea').value.trim();
+  const wishes=el('wishes').value.trim();const workTitle=el('work-title').value.trim();
+  const workUrl=el('work-url').value.trim();
+  const visibility=document.querySelector('input[name="visibility"]:checked')?.value || '';
+  if(!alias){el('alias').focus();setSubmitStatus('請先填寫暱稱或組別。','error');return;}
+  if(bots.length===0){setSubmitStatus('請至少勾選一項體驗過的 Chatbot。','error');return;}
+  if(!feeling || !idea){setSubmitStatus('請填寫 Chatbot 使用感受，以及對未來教育的想法。','error');return;}
+  if(workUrl && !/^https:\/\/(?:[\da-z-]+\.)+[a-z]{2,}(?::\d{2,5})?(?:[/?#][^\s<>"']*)?$/i.test(workUrl)){
+    el('work-url').focus();setSubmitStatus('作品連結需為完整的 https:// 公開網址。','error');return;
+  }
+  if(workUrl && !workTitle){el('work-title').focus();setSubmitStatus('填寫作品連結時，請加上作品名稱。','error');return;}
+  if(!visibility){setSubmitStatus('請選擇心得公開方式。','error');return;}
+  const id=lastSubmitId || getReceiptId();lastSubmitId=id;
+  const payload={action:'submit',id,alias,bots:bots.join('、'),color:selectedColor,
+    colorThought:el('color-thought').value.trim(),feeling,idea,wishes,workTitle,workUrl,visibility};
+  submitting=true;el('submit-button').disabled=true;
+  setSubmitStatus('資料傳送中，正在向 Google Sheet 確認收件……');
+  try{
+    postByForm(payload);
+    const confirmed=await confirmReceipt(id);
+    if(!confirmed){
+      setSubmitStatus('尚未確認收件。請先至色彩牆查看或告知講師，避免立刻重複送出。','warning');
+      return;
+    }
+    lastSubmitId=null;
+    setSubmitStatus(visibility==='public'?'已確認收件！你的心得已準備好公開展示。':'已確認收件！你的心得只會保存在講師的 Google Sheet。');
+    el('feedback-form').reset();
+    selectColor(selectedColor);
+    if(visibility==='public'){
+      await sleep(600);switchView('wall');
+    }
+  }catch(err){
+    setSubmitStatus('傳送過程出現問題：'+err.message+'。請告知講師確認 Sheet 是否收件。','error');
+  }finally{submitting=false;el('submit-button').disabled=false;}
+}
+
+function renderWall(){
+  const wall=el('wall');wall.replaceChildren();
+  const show=wallFilter==='全部'?wallEntries:wallEntries.filter(e=>e.color===wallFilter);
+  el('wall-count').textContent='公開心得 '+wallEntries.length+' 則';
+  const stats=el('wall-stats');stats.replaceChildren();
+  COLORS.forEach(c=>{
+    const count=wallEntries.filter(p=>p.color===c.name).length;
+    if(!count)return;
+    const chip=document.createElement('span');chip.className='stat-chip';chip.style.setProperty('--chip',c.hex);
+    const dot=document.createElement('i');dot.setAttribute('aria-hidden','true');
+    const label=document.createElement('span');label.textContent=c.name+' '+count;
+    chip.append(dot,label);stats.append(chip);
+  });
+  if(!show.length){
+    const empty=document.createElement('div');empty.className='empty';
+    const icon=document.createElement('span');icon.className='empty-icon';icon.textContent='✧';
+    const msg=document.createElement('p');msg.textContent=wallFilter==='全部'?'還沒有公開心得。你可以成為第一位分享的人！':'這個色彩目前還沒有公開心得，試試其他色彩。';
+    empty.append(icon,msg);wall.append(empty);return;
+  }
+  show.forEach(entry=>{
+    const color=COLORS.find(c=>c.name===entry.color)||COLORS[0];
+    const card=document.createElement('article');card.className='post';
+    card.style.setProperty('--tone',color.hex);card.style.setProperty('--wash',color.wash);
+    const header=document.createElement('div');header.className='post-head';
+    const dot=document.createElement('i');dot.className='post-dot';dot.setAttribute('aria-hidden','true');
+    const who=document.createElement('div');
+    const alias=document.createElement('div');alias.className='post-alias';alias.textContent=entry.alias || '匿名分享';
+    const date=document.createElement('div');date.className='post-date';date.textContent=(entry.submitted||'')+' · '+color.name;
+    who.append(alias,date);header.append(dot,who);card.append(header);
+    if(entry.bots){const bots=document.createElement('div');bots.className='post-bots';bots.textContent='體驗：'+entry.bots;card.append(bots);}
+    const section=(title,value)=>{
+      if(!value)return;
+      const h=document.createElement('div');h.className='post-kicker';h.textContent=title;
+      const p=document.createElement('p');p.className='post-text';p.textContent=value;
+      card.append(h,p);
+    };
+    section('這次 AI 體驗的感受',entry.feeling);
+    section('對未來教育的想像',entry.idea);
+    section('選這個顏色，因為…',entry.colorThought);
+    section('對未來 Chatbot 的期待',entry.wishes);
+    if(entry.workUrl && /^https:\/\//i.test(entry.workUrl)){
+      const box=document.createElement('div');box.className='post-art';
+      const link=document.createElement('a');link.className='post-link';link.href=entry.workUrl;
+      link.textContent='欣賞作品：'+(entry.workTitle||'開啟作品')+' ↗';link.target='_blank';link.rel='noopener noreferrer nofollow';
+      box.append(link);card.append(box);
+    }
+    wall.append(card);
+  });
+}
+
+function initFilters(){
+  const names=['全部',...COLORS.map(c=>c.name)];
+  names.forEach(name=>{
+    const button=document.createElement('button');button.className='filter-btn';button.type='button';
+    button.textContent=name;button.dataset.filter=name;button.setAttribute('aria-pressed',String(name===wallFilter));
+    button.addEventListener('click',()=>{
+      wallFilter=name;
+      document.querySelectorAll('.filter-btn').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.filter===name)));
+      renderWall();
+    });
+    el('wall-filters').append(button);
+  });
+}
+
+async function loadWall(){
+  if(!configured){wallEntries=[];renderWall();el('wall-status').textContent='此展示頁尚未連接 Google Sheet。請教師先完成後端部署，這裡才會顯示真實投稿。';return;}
+  el('wall-status').textContent='正在從 Google Sheet 更新公開心得……';
+  el('refresh-wall').disabled=true;
+  try{
+    const result=await jsonp('list');if(!result.ok)throw new Error(result.error||'後端回傳異常');
+    wallEntries=Array.isArray(result.items)?result.items:[];
+    renderWall();el('wall-status').textContent='已更新公開心得。沒有公開同意的回覆不會出現在這裡。';
+  }catch(err){
+    el('wall-status').textContent='目前無法取得心得：'+err.message+'。可以稍後按「重新整理」。';
+  }finally{el('refresh-wall').disabled=false;}
+}
+
+initColors();initNav();initFilters();renderWall();
+el('feedback-form').addEventListener('submit',handleSubmit);
+checkBackend();
+</script>
+</body>
+</html>
